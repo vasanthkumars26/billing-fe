@@ -10,7 +10,7 @@ export default function InvoiceView() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/invoices/${id}`)
+    fetch(`https://billing-be-gysy.onrender.com/api/invoices/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setInvoice(data);

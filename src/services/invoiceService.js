@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/invoices";
+const API = "https://billing-be-gysy.onrender.com/api/invoices";
 
 export const getInvoices = async () => {
   const res = await axios.get(API);

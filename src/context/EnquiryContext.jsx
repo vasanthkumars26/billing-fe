@@ -6,7 +6,7 @@ const EnquiryContext = createContext();
 export const EnquiryProvider = ({ children }) => {
   const [enquiries, setEnquiries] = useState([]);
 
-  const API = "http://localhost:5000/api/enquiries";
+  const API = "https://billing-be-gysy.onrender.com/api/enquiries";
 
   useEffect(() => {
     fetchEnquiries();
