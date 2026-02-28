@@ -8,7 +8,7 @@ import { useInvoice } from "../../context/InvoiceContext";
 import { Link } from "react-router-dom";
 
 const LOCAL_URL = "http://localhost:5000";
-const DEPLOYED_URL = "https://billing-be-delta.vercel.app";
+const DEPLOYED_URL = "https://billing-be-gysy.onrender.com";
 const BASE_URL = window.location.hostname.includes("localhost") ? LOCAL_URL : DEPLOYED_URL;
 const socket = io(BASE_URL, { transports: ["websocket", "polling"] });
 const MAX_ORDERS = 50;
