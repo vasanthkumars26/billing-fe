@@ -25,6 +25,21 @@ export const InvoiceProvider = ({ children }) => {
     setInvoices([...invoices, saved]);
   };
 
+  // ✅ New: Add invoice directly from order (for admin dashboard)
+  const addInvoiceFromOrder = (order) => {
+    // order should have _id, pdfUrl, userName/userEmail, total, items
+    const invoice = {
+      _id: order._id,
+      clientName: order.userName || order.userEmail,
+      total: order.total,
+      status: "pending",
+      date: new Date().toLocaleDateString(),
+      pdfUrl: order.pdfUrl,
+      items: order.items
+    };
+    setInvoices((prev) => [...prev, invoice]);
+  };
+
   const deleteInvoice = async (id) => {
     await deleteInvoiceApi(id);
     setInvoices(invoices.filter((inv) => inv._id !== id));
@@ -37,7 +52,7 @@ export const InvoiceProvider = ({ children }) => {
 
   return (
     <InvoiceContext.Provider
-      value={{ invoices, addInvoice, deleteInvoice, updateInvoice }}
+      value={{ invoices, addInvoice, addInvoiceFromOrder, deleteInvoice, updateInvoice }}
     >
       {children}
     </InvoiceContext.Provider>

@@ -18,7 +18,7 @@ const Login = () => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      if (user) navigate("/create-invoice");
+      if (user) navigate("/");
     });
     return () => unsub();
   }, [navigate]);
@@ -33,14 +33,14 @@ const Login = () => {
   const handlelogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, pass)
-      .then(() => navigate("/create-invoice"))
+      .then(() => navigate("/"))
       .catch(() => setErr("Invalid email or password"));
   };
 
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate("/create-invoice");
+      navigate("/");
     } catch {
       setErr("Google login failed");
     }

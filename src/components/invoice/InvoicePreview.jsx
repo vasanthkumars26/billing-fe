@@ -1,23 +1,22 @@
 export default function InvoicePreview({ invoice }) {
-  if (!invoice || !invoice.items) {
+  if (!invoice || !invoice.items || invoice.items.length === 0) {
     return <p>No invoice data available</p>;
   }
 
   const subtotal = invoice.items.reduce(
-    (sum, item) => sum + item.qty * item.price,
+    (sum, item) => sum + (item.qty ?? 0) * (item.price ?? 0),
     0
   );
 
-  const taxPercent = invoice.tax || 0;
+  const taxPercent = invoice.tax ?? 0;
   const taxAmount = (subtotal * taxPercent) / 100;
-  const discount = invoice.discount || 0;
+  const discount = invoice.discount ?? 0;
   const total = subtotal + taxAmount - discount;
 
   return (
     <div
       id="invoice"
-      className="bg-white p-4 sm:p-6 md:p-8 shadow rounded 
-                 w-full max-w-4xl mx-auto"
+      className="bg-white p-4 sm:p-6 md:p-8 shadow rounded w-full max-w-4xl mx-auto"
     >
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:justify-between mb-6">
@@ -29,15 +28,15 @@ export default function InvoicePreview({ invoice }) {
 
         <div className="sm:text-right">
           <h2 className="text-lg sm:text-xl font-bold">INVOICE</h2>
-          <p className="text-sm">Invoice ID: {invoice._id}</p>
-          <p className="text-sm">Date: {invoice.date}</p>
+          <p className="text-sm">Invoice ID: {invoice._id || "-"}</p>
+          <p className="text-sm">Date: {invoice.date || "-"}</p>
         </div>
       </div>
 
       {/* Client Info */}
       <div className="mb-6">
         <h3 className="font-semibold">Bill To:</h3>
-        <p>{invoice.clientName}</p>
+        <p>{invoice.clientName || "Unknown Client"}</p>
       </div>
 
       {/* Items */}
@@ -55,12 +54,12 @@ export default function InvoicePreview({ invoice }) {
             </thead>
             <tbody>
               {invoice.items.map((item, i) => (
-                <tr key={i}>
-                  <td className="border p-2">{item.name}</td>
-                  <td className="border p-2 text-center">{item.qty}</td>
-                  <td className="border p-2 text-right">₹{item.price}</td>
+                <tr key={item._id || i}>
+                  <td className="border p-2">{item.name || "-"}</td>
+                  <td className="border p-2 text-center">{item.qty ?? 0}</td>
+                  <td className="border p-2 text-right">₹{item.price ?? 0}</td>
                   <td className="border p-2 text-right">
-                    ₹{item.qty * item.price}
+                    ₹{(item.qty ?? 0) * (item.price ?? 0)}
                   </td>
                 </tr>
               ))}
@@ -72,21 +71,21 @@ export default function InvoicePreview({ invoice }) {
         <div className="sm:hidden space-y-3">
           {invoice.items.map((item, i) => (
             <div
-              key={i}
+              key={item._id || i}
               className="border rounded p-3 flex flex-col gap-1 text-sm"
             >
-              <div className="font-semibold">{item.name}</div>
+              <div className="font-semibold">{item.name || "-"}</div>
               <div className="flex justify-between">
                 <span>Qty:</span>
-                <span>{item.qty}</span>
+                <span>{item.qty ?? 0}</span>
               </div>
               <div className="flex justify-between">
                 <span>Price:</span>
-                <span>₹{item.price}</span>
+                <span>₹{item.price ?? 0}</span>
               </div>
               <div className="flex justify-between font-semibold">
                 <span>Total:</span>
-                <span>₹{item.qty * item.price}</span>
+                <span>₹{(item.qty ?? 0) * (item.price ?? 0)}</span>
               </div>
             </div>
           ))}

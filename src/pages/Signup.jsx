@@ -20,7 +20,7 @@ const Signup = () => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      if (user) navigate("/create-invoice");
+      if (user) navigate("/");
     });
     return () => unsub();
   }, [navigate]);
@@ -39,7 +39,7 @@ const Signup = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, email, pass);
-      navigate("/create-invoice");
+      navigate("/");
     } catch (error) {
       setErr(error.message);
     }
@@ -48,7 +48,7 @@ const Signup = () => {
   const handleGoogleSignup = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate("/create-invoice");
+      navigate("/");
     } catch (error) {
       setErr(error.message);
     }

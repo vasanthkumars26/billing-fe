@@ -2,6 +2,7 @@ import { useState } from "react";
 import InvoiceItemRow from "./InvoiceItemRow";
 import { calculateTotal } from "../../utils/calculateTotal";
 import { useInvoice } from "../../context/InvoiceContext";
+import { useNavigate } from "react-router-dom";
 
 const InvoiceForm = () => {
   const { addInvoice } = useInvoice();
@@ -11,6 +12,7 @@ const InvoiceForm = () => {
   const [items, setItems] = useState([{ name: "", qty: 1, price: 0 }]);
   const [tax, setTax] = useState(0);
   const [discount, setDiscount] = useState(0);
+  const navigate = useNavigate()
 
   const subtotal = items.reduce(
     (sum, item) => sum + item.qty * item.price,
@@ -65,11 +67,19 @@ const InvoiceForm = () => {
   };
 
   return (
-    <form
+    <div>
+     <div> <p
+        onClick={() => navigate("/admin")}
+        className="w-fit bg-red-300 m-3 px-2 py-1 hover:cursor-pointer hover:bg-red-600 hover:text-white font-semibold rounded"
+      >
+        X
+      </p></div>
+    <div><form
       onSubmit={handleSubmit}
       className="bg-white p-6 rounded shadow max-w-3xl"
     >
       <h2 className="text-xl font-bold mb-4">Create Invoice</h2>
+       
 
       {/* Client & Status */}
       <div className="grid grid-cols-2 gap-4 mb-4">
@@ -142,7 +152,7 @@ const InvoiceForm = () => {
       >
         Save Invoice
       </button>
-    </form>
+    </form></div></div>
   );
 };
 

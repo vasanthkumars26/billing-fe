@@ -1,9 +1,11 @@
 import StatCard from "../components/dashboard/StatCard";
 import RevenueChart from "../components/dashboard/RevenueChart";
 import { useInvoice } from "../context/InvoiceContext";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { invoices = [] } = useInvoice();
+  const navigate = useNavigate()
 
   const totalInvoices = invoices.length;
 
@@ -40,6 +42,14 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6">
+      <p
+          onClick={() => navigate("/admin")}
+          className="w-fit bg-red-300 px-2 py-1 
+                     hover:cursor-pointer hover:bg-red-600 hover:text-white 
+                     font-semibold rounded"
+        >
+          X
+        </p>
       <h1 className="text-2xl font-bold">Dashboard</h1>
 
       {/* Stat cards */}
