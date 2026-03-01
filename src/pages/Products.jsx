@@ -262,7 +262,7 @@ export default function Products() {
                 transition={{ duration: 0.3 }}
                 className="relative bg-white rounded-2xl shadow hover:shadow-xl p-3 flex flex-col"
               >
-                {/* WISHLIST ICON */}
+                {/* WISHLIST ICON
                 <button
                   onClick={() => toggleWishlist(p)}
                   className="absolute top-2 right-3 bg-white rounded-full p-1 shadow"
@@ -275,7 +275,7 @@ export default function Products() {
                         : "text-gray-400"
                     }
                   />
-                </button>
+                </button> */}
 
                 {/* IMAGE */}
                 <motion.img
