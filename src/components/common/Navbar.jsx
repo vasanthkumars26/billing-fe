@@ -47,6 +47,9 @@ const Navbar = () => {
         {/* <Link className={linkClass("/dashboard")} to="/dashboard">Dashboard</Link> */}
         <Link className={linkClass("/products")} to="/products">Products</Link>
 
+        {/* <Link className={`${linkClass("/wishlist")} relative`} to="/wishlist">
+          Wishlist
+        </Link> */}
         <Link className={`${linkClass("/cart")} relative`} to="/cart">
           Cart
           {cart.length > 0 && (
@@ -95,6 +98,7 @@ const Navbar = () => {
         <div className="absolute top-16 left-0 w-full bg-white z-10 shadow-md flex flex-col p-4 md:hidden space-y-2">
           {/* <Link onClick={() => setOpen(false)} className={linkClass("/dashboard")} to="/dashboard">Dashboard</Link> */}
           <Link onClick={() => setOpen(false)} className={linkClass("/products")} to="/products">Products</Link>
+          {/* <Link onClick={() => setOpen(false)} className={linkClass("/wishlist")} to="/wishlist">Wishlist</Link> */}
           <Link onClick={() => setOpen(false)} className={linkClass("/cart")} to="/cart">Cart</Link>
           <Link onClick={() => setOpen(false)} className={linkClass("/profile")} to="/profile">Profile</Link>
 

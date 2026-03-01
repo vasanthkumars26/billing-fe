@@ -13,7 +13,7 @@ export default function Cart() {
         animate={{ opacity: 1, y: 0 }}
         className="text-3xl font-bold mb-6 text-center md:text-left"
       >
-        🛒 Your Cart
+         Your Cart
       </motion.h1>
 
       {cart.length === 0 ? (
